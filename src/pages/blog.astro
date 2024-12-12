@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Showcase from "../components/Showcase.astro";
+
+const posts = await Astro.glob("../posts/*.md");
+---
+
+<Layout title="Astro blog posts">
+    <Showcase heading="Astro blog" text="A simple blog built with AstroJS" />
+    <section class="page-content">
+        <div class="container">
+            {
+                posts.map((post) => (
+                    <Card
+                        title={post.frontmatter.title}
+                        body={post.frontmatter.excerpt}
+                        btn ={true};
+                        button_text = {"Read more"};
+                    />
+                ))
+            }
+        </div>
+    </section>
+</Layout>
